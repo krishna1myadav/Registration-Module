@@ -20,7 +20,7 @@
         <div class="col m6 offset-m3">
             <div class="card">
                 <div class="card-content">
-                    <h3>Register here</h3>
+                    <h3 class="center-align">Register here</h3>
 
                     <div class="form center-align">
                         <form action="Register" method="post">
@@ -40,5 +40,18 @@
         </div>
     </div>
 </div>
+
+<script
+        src="https://code.jquery.com/jquery-4.0.0.min.js"
+        integrity="sha256-OaVG6prZf4v69dPg6PhVattBXkcOWQB62pdZ3ORyrao="
+        crossorigin="anonymous">
+</script>
+<script>
+    $(document).ready(function(){
+        console.log("page is ready!.." )
+    })
+</script>
+
+
 </body>
 </html>
