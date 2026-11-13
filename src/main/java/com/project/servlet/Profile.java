@@ -1,4 +1,7 @@
 package com.project.servlet;
 
-public class Profile {
+import jakarta.servlet.http.HttpServlet;
+
+public class Profile extends HttpServlet {
+
 }
