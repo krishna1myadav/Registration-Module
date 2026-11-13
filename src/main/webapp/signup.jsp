@@ -21,9 +21,10 @@
             <div class="card">
                 <div class="card-content">
                     <h3 class="center-align">Register here</h3>
+                    <h5 id="msg" class="center-align"></h5>
 
                     <div class="form center-align">
-                        <form action="Register" method="post">
+                        <form action="Register" method="post" id="myForm">
                             <input type="text" name="userName" placeholder="Enter name"/>
                             <input type="text" name="password" placeholder="Enter unique password"/>
                             <input type="text" name="email" placeholder="Enter email"/>
@@ -49,6 +50,30 @@
 <script>
     $(document).ready(function(){
         console.log("page is ready!.." )
+        $("#myForm").on("submit", function(event){
+            event.preventDefault()
+            var f = $(this).serialize();
+            console.log(f);
+            $.ajax({
+                url: "Register",
+                data: f,
+                type: 'POST',
+                success: function (data, textStatus, jqXHR){
+                    console.log(data);
+                    console.log("success.....")
+                    if(data.trim() === 'done'){
+                        $("#msg").html("successfully Registered!")
+                    }else{
+                        $("#msg").html("Try again!")
+                    }
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    console.log(data);
+                    console.log("failed.....")
+                    $("#msg").html("successfully Registered!")
+                }
+            })
+        })
     })
 </script>
 
