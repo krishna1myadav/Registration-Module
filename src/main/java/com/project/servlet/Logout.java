@@ -23,6 +23,6 @@ public class Logout extends HttpServlet {
         resp.addCookie(ck[0]);
         resp.addCookie(ck[1]);
 
-        resp.sendRedirect("index.html");
+        resp.sendRedirect("index.jsp");
     }
 }
