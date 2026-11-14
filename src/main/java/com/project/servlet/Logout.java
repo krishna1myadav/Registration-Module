@@ -8,6 +8,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 @WebServlet("/logout")
 public class Logout extends HttpServlet {
@@ -17,11 +18,15 @@ public class Logout extends HttpServlet {
 
         Cookie[] ck = req.getCookies();
 
-        ck[0].setMaxAge(0);
-        ck[1].setMaxAge(0);
+        if (ck != null) {
+            for (Cookie c : ck) {
 
-        resp.addCookie(ck[0]);
-        resp.addCookie(ck[1]);
+                if (c.getName().equals("em") || c.getName().equals("ps")) {
+                    c.setMaxAge(0);
+                    resp.addCookie(c);
+                }
+            }
+        }
 
         resp.sendRedirect("index.jsp");
     }

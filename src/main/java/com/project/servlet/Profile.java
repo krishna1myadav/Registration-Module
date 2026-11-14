@@ -18,18 +18,34 @@ public class Profile extends HttpServlet {
 
         Cookie[] ck = req.getCookies();
 
-        if (ck == null) {
-            resp.sendRedirect("index.html");
-        } else {
+        String email = null;
+        String password = null;
 
-            resp.setContentType("text/html");
+        if (ck != null) {
+            for (Cookie c : ck) {
 
-            PrintWriter out = resp.getWriter();
+                if (c.getName().equals("em")) {
+                    email = c.getValue();
+                }
 
-            out.println("<h1>Email = " + ck[0].getValue() + "</h1>");
-            out.println("<h1>Password = " + ck[1].getValue() + "</h1>");
-
-            out.print("<a href='logout'>Logout</a>");
+                if (c.getName().equals("ps")) {
+                    password = c.getValue();
+                }
+            }
         }
+
+        if (email == null) {
+            resp.sendRedirect("index.jsp");
+            return;
+        }
+
+        resp.setContentType("text/html");
+
+        PrintWriter out = resp.getWriter();
+
+        out.println("<h1>Email = " + email + "</h1>");
+        out.println("<h1>Password = " + password + "</h1>");
+
+        out.print("<a href='logout'>Logout</a>");
     }
 }
